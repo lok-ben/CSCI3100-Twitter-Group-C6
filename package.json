@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "ajax": "^0.0.4",
+    "mysql": "^2.18.1",
+    "react-router-dom": "^6.8.1",
+    "sql": "^0.78.0"
+  }
+}
