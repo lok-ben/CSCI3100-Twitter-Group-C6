@@ -32,7 +32,6 @@ class CustomTextField extends StatelessWidget {
             ),
           ),
         ),
-        validator: (val) {},
       ),
     );
   }
