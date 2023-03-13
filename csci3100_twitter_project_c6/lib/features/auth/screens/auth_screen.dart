@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:csci3100_twitter_project_c6/features/auth/auth.dart';
 import 'package:csci3100_twitter_project_c6/common/widgets/button.dart';
 import 'package:csci3100_twitter_project_c6/common/widgets/textfield.dart';
+import 'package:csci3100_twitter_project_c6/common/widgets/alert_dialog.dart';
 
 enum AuthState {
   signin,
@@ -36,6 +37,8 @@ class _AuthScreenState extends State<AuthScreen> {
     } on FirebaseAuthException catch (e) {
       setState(() {
         errorMessage = e.message;
+        _showDialog(context, 'Error Occured',
+            errorMessage.toString().split('Firebase: ')[1].split('(')[0]);
       });
     }
   }
@@ -49,8 +52,30 @@ class _AuthScreenState extends State<AuthScreen> {
     } on FirebaseAuthException catch (e) {
       setState(() {
         errorMessage = e.message;
+        _showDialog(context, 'Error Occured',
+            errorMessage.toString().split('Firebase: ')[1].split('(')[0]);
       });
     }
+  }
+
+  Future<void> _showDialog(
+      BuildContext context, String title, String content) async {
+    continueCallBack() => {
+          Navigator.of(context).pop(),
+          // code on continue comes here
+        };
+    CustomBurryDialog alert = CustomBurryDialog(
+      title: title,
+      content: content,
+      continueCallBack: continueCallBack,
+    );
+
+    await showDialog(
+      context: context,
+      builder: (context) {
+        return alert;
+      },
+    );
   }
 
   @override
@@ -131,8 +156,15 @@ class _AuthScreenState extends State<AuthScreen> {
                                   CustomTextField(
                                     controller: _passwordController,
                                     hintText: 'User Password',
+                                    password: true,
                                   ),
-                                  CustomButton(text: 'Sign Up', onClick: signUp)
+                                  CustomButton(
+                                      text: 'Sign Up',
+                                      onClick: () => {
+                                            if (_signUpFormKey.currentState!
+                                                .validate())
+                                              {signUp()}
+                                          })
                                 ],
                               )),
                       ],
@@ -181,8 +213,15 @@ class _AuthScreenState extends State<AuthScreen> {
                                 CustomTextField(
                                   controller: _passwordController,
                                   hintText: 'User Password',
+                                  password: true,
                                 ),
-                                CustomButton(text: 'Submit', onClick: signIn)
+                                CustomButton(
+                                    text: 'Submit',
+                                    onClick: () => {
+                                          if (_signInFormKey.currentState!
+                                              .validate())
+                                            {signIn()}
+                                        })
                               ],
                             )),
                     ]),
@@ -190,7 +229,6 @@ class _AuthScreenState extends State<AuthScreen> {
                 )
               ],
             ),
-            Text(errorMessage == '' ? '' : 'Humm?$errorMessage')
           ],
         ),
       )),
