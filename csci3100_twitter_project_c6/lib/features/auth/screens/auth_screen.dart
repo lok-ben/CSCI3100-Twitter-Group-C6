@@ -26,7 +26,7 @@ class _AuthScreenState extends State<AuthScreen> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final User? user = Auth().currentUser;
-  String? errorMessage = '';
+  String errorMessage = '';
 
   Future<void> signIn() async {
     try {
@@ -36,8 +36,10 @@ class _AuthScreenState extends State<AuthScreen> {
       );
     } on FirebaseAuthException catch (e) {
       setState(() {
-        errorMessage = e.message;
-        _showDialog(context, 'Error Occured', errorMessage.toString());
+        errorMessage = e.message.toString().contains('Firebase: ')
+            ? e.message.toString().split('Firebase: ')[1].split('(')[0]
+            : e.message.toString();
+        _showDialog(context, 'Error Occured', errorMessage);
       });
     }
   }
@@ -50,8 +52,10 @@ class _AuthScreenState extends State<AuthScreen> {
       );
     } on FirebaseAuthException catch (e) {
       setState(() {
-        errorMessage = e.message;
-        _showDialog(context, 'Error Occured', errorMessage.toString());
+        errorMessage = e.message.toString().contains('Firebase: ')
+            ? e.message.toString().split('Firebase: ')[1].split('(')[0]
+            : e.message.toString();
+        _showDialog(context, 'Error Occured', errorMessage);
       });
     }
   }
