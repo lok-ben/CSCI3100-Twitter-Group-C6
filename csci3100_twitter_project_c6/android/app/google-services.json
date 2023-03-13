@@ -15,7 +15,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "332384831825-nv4v8g4ieli2liq3noa6cm6nmq3tdrl4.apps.googleusercontent.com",
+          "client_id": "332384831825-4cbkg08n8ogsqir6q60ess46sebgl947.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -28,8 +28,15 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "332384831825-nv4v8g4ieli2liq3noa6cm6nmq3tdrl4.apps.googleusercontent.com",
+              "client_id": "332384831825-4cbkg08n8ogsqir6q60ess46sebgl947.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "332384831825-rvlp2ncltlg74q80keps04mpost76pi0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.csci3100TwitterProjectC6"
+              }
             }
           ]
         }

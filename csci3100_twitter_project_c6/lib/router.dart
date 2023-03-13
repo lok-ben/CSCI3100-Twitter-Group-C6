@@ -1,7 +1,7 @@
-import 'package:csci3100_twitter_project_c6/features/auth/screens/auth_screen.dart';
-import 'package:flutter/material.dart';
-import 'package:csci3100_twitter_project_c6/homepage.dart';
 import 'package:csci3100_twitter_project_c6/features/auth/auth.dart';
+import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:csci3100_twitter_project_c6/homepage.dart';
 
 class WidgetTree extends StatefulWidget {
   const WidgetTree({super.key});
@@ -13,15 +13,13 @@ class WidgetTree extends StatefulWidget {
 class _WidgetTreeState extends State<WidgetTree> {
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
-      stream: Auth().authStateChange,
+    return StreamBuilder<User?>(
+      stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
-        if (snapshot.hasError) {
-          return const Text('Error');
-        } else if (snapshot.hasData) {
-          return HomePage();
+        if (!snapshot.hasData) {
+          return const SignIn();
         } else {
-          return const AuthScreen();
+          return HomePage();
         }
       },
     );

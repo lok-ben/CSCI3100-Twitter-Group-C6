@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:csci3100_twitter_project_c6/features/auth/auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
 
-  final User? user = Auth().currentUser;
+  final User? user = FirebaseAuth.instance.currentUser;
 
   Future<void> signOut() async {
-    await Auth().signOut();
+    await FirebaseAuth.instance.signOut();
+  }
+
+  Future deleteuser() async {
+    user?.delete();
   }
 
   Widget _title() {
@@ -35,6 +39,13 @@ class HomePage extends StatelessWidget {
     );
   }
 
+  Widget _removeUserButton() {
+    return ElevatedButton(
+      onPressed: deleteuser,
+      child: const Text('Remove Account'),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,6 +61,7 @@ class HomePage extends StatelessWidget {
             const Text('You are:'),
             _userId(),
             _signOutButton(),
+            _removeUserButton(),
           ],
         ),
       ),
