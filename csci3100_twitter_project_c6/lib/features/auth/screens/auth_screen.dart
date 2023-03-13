@@ -37,8 +37,7 @@ class _AuthScreenState extends State<AuthScreen> {
     } on FirebaseAuthException catch (e) {
       setState(() {
         errorMessage = e.message;
-        _showDialog(context, 'Error Occured',
-            errorMessage.toString().split('Firebase: ')[1].split('(')[0]);
+        _showDialog(context, 'Error Occured', errorMessage.toString());
       });
     }
   }
@@ -52,8 +51,7 @@ class _AuthScreenState extends State<AuthScreen> {
     } on FirebaseAuthException catch (e) {
       setState(() {
         errorMessage = e.message;
-        _showDialog(context, 'Error Occured',
-            errorMessage.toString().split('Firebase: ')[1].split('(')[0]);
+        _showDialog(context, 'Error Occured', errorMessage.toString());
       });
     }
   }
@@ -130,6 +128,11 @@ class _AuthScreenState extends State<AuthScreen> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
+                          onTap: () => {
+                            setState(() {
+                              _auth = AuthState.signup;
+                            })
+                          },
                           leading: Radio(
                             value: AuthState.signup,
                             groupValue: _auth,
@@ -191,6 +194,11 @@ class _AuthScreenState extends State<AuthScreen> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
+                        onTap: () => {
+                          setState(() {
+                            _auth = AuthState.signin;
+                          })
+                        },
                         leading: Radio(
                           value: AuthState.signin,
                           groupValue: _auth,
