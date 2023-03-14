@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:sidebarx/sidebarx.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
@@ -50,9 +50,23 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: _title()),
+      drawer: SidebarX(
+        controller: SidebarXController(
+          selectedIndex: 0,
+          extended: true,
+        ),
+        theme: SidebarXTheme(
+            width: MediaQuery.of(context).size.width * 0.25,
+            textStyle: const TextStyle(fontSize: 16)),
+        items: const [
+          SidebarXItem(icon: Icons.home, label: 'Home'),
+          SidebarXItem(icon: Icons.search, label: 'Search'),
+          SidebarXItem(icon: Icons.chat, label: 'Message'),
+          SidebarXItem(icon: Icons.person, label: 'Portfolio'),
+        ],
+      ),
       body: Container(
-        height: double.infinity,
-        width: double.infinity,
+        alignment: const Alignment(0, 0),
         padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,

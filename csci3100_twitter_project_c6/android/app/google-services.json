@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "332384831825-5bpgir0ve0pe52oamk020ud32thqu631.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.csci3100_twitter_project_c6",
+            "certificate_hash": "700a5ea6f6a66ac08df1031aa169ca56f9b696e1"
+          }
+        },
+        {
           "client_id": "332384831825-4cbkg08n8ogsqir6q60ess46sebgl947.apps.googleusercontent.com",
           "client_type": 3
         }

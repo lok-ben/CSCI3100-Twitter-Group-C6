@@ -41,6 +41,8 @@ dependencies:
     sdk: flutter
   firebase_ui_auth: ^1.1.16
   flutterfire_ui: ^0.4.3+20
+  flutter_svg:
+  sidebarx:
 
 dependency_overrides:
   intl: ^0.17.0-nullsafety.2
@@ -68,7 +70,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - images/twitter.png
+    - images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

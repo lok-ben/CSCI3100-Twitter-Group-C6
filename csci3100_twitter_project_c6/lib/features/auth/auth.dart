@@ -1,3 +1,4 @@
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutterfire_ui/auth.dart';
 import 'package:flutter/material.dart';
 
@@ -34,7 +35,7 @@ class _SignInState extends State<SignIn> {
             padding: const EdgeInsets.all(20),
             child: AspectRatio(
               aspectRatio: 1,
-              child: Image.asset('images/twitter.png'),
+              child: SvgPicture.asset('images/twitter.svg'),
             ),
           );
         },
@@ -43,7 +44,7 @@ class _SignInState extends State<SignIn> {
             padding: const EdgeInsets.all(20),
             child: AspectRatio(
               aspectRatio: 1,
-              child: Image.asset('images/twitter.png'),
+              child: SvgPicture.asset('images/twitter.svg'),
             ),
           );
         },
